@@ -12,18 +12,18 @@
     <div class=" bg-slate-400 h-screen">
         <nav class="flex p-5 justify-end bg-orange-500">
             <p class="text-center w-full text-2xl font-bold">What To Do?</p>
-            <div class="w-8 h-8 "><img src="images/icon-hamburger.svg"  class="hamburger inline-block md:hidden w-full h-full" alt="hamburger-icon"></div>
+            <div class="w-8 h-8 md:hidden "><img src="images/icon-hamburger.svg"  class="hamburger inline-block w-full h-full" alt="hamburger-icon"></div>
         </nav>
         <div class="main-content  h-full md:grid">
             <div class="hidden primary-menu bg-red-300 md:block">
-                This is where the nav bar goes
+                This is the Main Navigation.
             </div>
             <div class="content bg-blue-500 h-full">
-            This is where the enter todo contents go
+            This is where the entire todo contents go
             </div>
-            <div class="second-menu fixed right-0 top-0 h-full w-3/5 p-6 bg-slate-500 opacity-80 md:hidden">
+            <div class="mobile-menu fixed right-0 top-0 h-full w-3/5 p-6 bg-slate-500 opacity-80 md:hidden">
                 <img src="images/icon-hamburger-close.svg"  class="hamburger-close w-8 h-8" alt="hamburger-close-icon">
-
+                <div class="mobile-menu-content"></div>
             </div>
         </div>
     </div>

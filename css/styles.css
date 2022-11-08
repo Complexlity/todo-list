@@ -598,10 +598,6 @@ video {
   padding: 1.25rem;
 }
 
-.p-4 {
-  padding: 1rem;
-}
-
 .p-6 {
   padding: 1.5rem;
 }
@@ -619,14 +615,6 @@ video {
   font-weight: 700;
 }
 
-.opacity-10 {
-  opacity: 0.1;
-}
-
-.opacity-60 {
-  opacity: 0.6;
-}
-
 .opacity-80 {
   opacity: 0.8;
 }
@@ -635,7 +623,7 @@ video {
   grid-template-columns: minmax(250px, 1fr) 3fr;
 }
 
-.second-menu {
+.mobile-menu {
   min-width:250px;
   transform: translateX(100%);
   transition: transform 1s ease-in-out;
