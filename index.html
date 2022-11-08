@@ -12,14 +12,18 @@
     <div class=" bg-slate-400 h-screen">
         <nav class="flex p-5 justify-end bg-orange-500">
             <p class="text-center w-full text-2xl font-bold">What To Do?</p>
-            <img src="images/icon-hamburger.svg"  class="inline-block w-8 h-8 md:hidden" alt="hamburger-icon">
+            <div class="w-8 h-8 "><img src="images/icon-hamburger.svg"  class="hamburger inline-block md:hidden w-full h-full" alt="hamburger-icon"></div>
         </nav>
         <div class="main-content  h-full md:grid">
-            <div class="hidden big-nav bg-red-300 md:block">
-                Hello
+            <div class="hidden primary-menu bg-red-300 md:block">
+                This is where the nav bar goes
             </div>
             <div class="content bg-blue-500 h-full">
-            How far boss
+            This is where the enter todo contents go
+            </div>
+            <div class="second-menu fixed right-0 top-0 h-full w-3/5 p-6 bg-slate-500 opacity-80 md:hidden">
+                <img src="images/icon-hamburger-close.svg"  class="hamburger-close w-8 h-8" alt="hamburger-close-icon">
+
             </div>
         </div>
     </div>
