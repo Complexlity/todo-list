@@ -10,26 +10,39 @@
 </head>
 <body>
     <div class=" bg-slate-400 h-screen">
-        <nav class="flex p-5 justify-end bg-orange-500">
+        <nav class="flex p-5 justify-end bg-gray-800">
             <p class="text-center w-full text-2xl font-bold">What To Do?</p>
             <div class="w-8 h-8 md:hidden "><img src="images/icon-hamburger.svg"  class="hamburger inline-block w-full h-full" alt="hamburger-icon"></div>
         </nav>
-        <div class="main-content  h-full md:grid">
-            <div class="hidden text-center primary-menu bg-red-300 pt-8 md:block">
+        <div class="main-content | h-full md:grid">
+            <div class=" primary-menu | hidden text-center bg-gray-500 pt-8 md:block">
                 <h2 class="text-center">Projects</h2>
                 <hr class='w-3/4 mx-auto mt-4'>
-                <div class="project text-start bg-blue-600 mt-8 px-8">
+                <div class="project | text-start bg-gray-700 mt-8 px-8">
                     <h3 class="title">Gym todos</h3>
                     <p class="description">for going to the gym</p>
                 </div>
+                <div class="add-project text-end px-4 mt-4">Add project</div>
             </div>
-            <div class="content bg-blue-500 h-full">
-                <h2 class="text-center pt-8">Gym Todos <span class="add-item"></span></h2>
-                <hr class='w-3/4 mx-auto mt-4'>
-                  <ul class="todo-items mx-auto mt-4 w-4/5 bg-slate-500 px-4 py-4 grid gap-2">          
+            <div class="hidden dummy bg-gray-400"></div>
+            <div class="content | bg-gray-600 h-full ">
+                <header class="w-4/5 mx-auto">
+                    <h2 class="text-center  pt-8 relative">Gym Todos <span class="add-item absolute -right-0">Add</span></h2>
+                    <hr class=' mx-auto mt-4'>
+                </header>
+                    <ul class="todo-items mx-auto mt-4 w-4/5 px-4 py-4 grid gap-2">
+                        <li class="todo w-full  bg-gray-500 rounded-lg px-4 py-2">
+                            <div class="todo-text-container">
+                            <input type='checkbox' class="check-todo-btn rounded-full"></input>
+                            <input class="todo-input w-4/5"type="text" class="todo-text" value="Go to the gym at least once every day" readonly disabled>
+                            <div class="btn-container">
+                            <i class="delete-todo-btn far fa-trash"></i>
+                            <i class="edit-todo-btn fas fa-edit"></i>
+                            </div></div>
+                            </li>          
                   </ul>
             </div>
-            <div class="mobile-menu fixed right-0 top-0 h-full w-3/5 p-6 bg-slate-500 opacity-80 md:hidden">
+            <div class="mobile-menu fixed right-0 top-0 h-full w-3/5 p-6 bg-gray-300 md:hidden">
                 <img src="images/icon-hamburger-close.svg"  class="hamburger-close w-8 h-8" alt="hamburger-close-icon">
                 <div class="mobile-menu-content"></div>
             </div>

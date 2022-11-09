@@ -27,16 +27,16 @@ function populateMenu(){
 }
 
 function populateTodoItems(number){
-    let item = `<li class="todo w-full  bg-red-600 rounded-lg px-4 py-2">
+    let item = ` <li class="todo w-full  bg-gray-500 rounded-lg px-4 py-2">
     <div class="todo-text-container">
     <input type='checkbox' class="check-todo-btn"></input>
-    <input class="w-4/5"type="text" class="todo-text" value="Go to the gym at least once every day" readonly disabled>
+    <input class="todo-input w-4/5"type="text" class="todo-text" value="Go to the gym at least once every day" readonly disabled>
     <div class="btn-container">
     <i class="delete-todo-btn far fa-trash"></i>
     <i class="edit-todo-btn fas fa-edit"></i>
     </div></div>
-    </li>
-    `
+    </li>          `
+    
     for (let i = 0; i < number; i++){
         todoItems.innerHTML += item
     }
