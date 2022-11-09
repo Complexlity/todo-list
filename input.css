@@ -10,7 +10,65 @@
 .mobile-menu {
     min-width:250px;
     transform: translateX(100%);
-    transition: transform 1s ease-in-out;
+    transition: transform .6s ease-in-out;
 }
 
-
+/* .todo {
+    width: 44.2vw;
+    background-color: #495057;
+    border-radius: 0.75rem;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .todo-text-container {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .check-todo-btn {
+    appearance: none;
+  }
+  
+  .check-todo-btn {
+    display:block;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 1.5px solid #CED4DA;
+    padding:9px !important;
+    
+    border-radius: 50%;
+  }
+  
+  .check-todo-btn:checked {
+    -webkit-appearance: none;
+    background-color: #7DF196;
+    border: 1.5px solid #7DF196;
+    padding: 9px ;
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+  
+  .check-todo-btn:disabled {
+    background-color:#d0cfcf;
+  }
+  
+  .todo-text {
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    font-family: 1.25rem;
+    font: inherit;
+    font-weight: 400;
+    color: #CED4DA;
+  }
+  
+  .todo-text::selection{
+    background: #CED4DA;
+    color: #EB4764;
+  }
+  
+ */
