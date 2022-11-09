@@ -35,3 +35,7 @@
   height:0;
   border-top: 2px solid black;
 }
+
+input:disabled{
+ text-decoration: line-through;
+}
