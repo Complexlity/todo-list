@@ -6,9 +6,9 @@ const secondMenuContent = document.querySelector('.mobile-menu-content')
 const todoItems = document.querySelector('.todo-items')
 const content = document.querySelector('.content')
 const menuItems = document.querySelector('.menu-items')
-const addSection = document.querySelector('.add-book-section')
+const addItemSection = document.querySelector('.add-book-section')
+const addProjectSection = document.querySelector('.add-project-section')
 let activeProject;
-
 
 hamburgerIcon.addEventListener('click', displaySecMenu)
 hamburgerCloseIcon.addEventListener('click', hideSecMenu)
@@ -18,16 +18,18 @@ function displaySecMenu(){
     populateMenu()
     secondMenu.style.transform = 'translateX(0)'
     this.style.display = 'none'
-    
 }
 
 function hideSecMenu(){
+
     secondMenu.style.transform = 'translateX(100%)'
     setTimeout(() => hamburgerIcon.style.display = 'block', 600)
+    
 }
 
 function populateMenu(){
     secondMenuContent.innerHTML = primaryMenu.innerHTML
+    allProjects.addListeners()
 }
 
 
@@ -64,7 +66,6 @@ class TodoItem{
 }
 
 
-
 class AllProject extends ProjectsList{
     constructor(items,count){
         super()
@@ -78,10 +79,15 @@ class AllProject extends ProjectsList{
                     <p class="description text-sm italic">${item.description}</p>
                 </div>
             `
+            this.addListeners()
         }
-        
     }
-}
+        addListeners(){
+            const addProjectBtn = document.querySelectorAll('.icon.add-project')
+            addProjectBtn.forEach(button => button.addEventListener('click', () => addProjectSection.style.display = 'block'))            
+        }
+    }
+
 
 
 
@@ -125,7 +131,7 @@ class TodoProject extends ProjectsList {
                             </div></div>
                             </li>   `
       }
-      addSection.dataset.activeItem = this.index
+      addItemSection.dataset.activeItem = this.index
       this.addListeners()
     }
 
@@ -135,8 +141,8 @@ class TodoProject extends ProjectsList {
         let checkboxes = document.querySelectorAll('.check-todo-btn')
         checkboxes.forEach(checkbox => checkbox.addEventListener('click', this.#toggleDisable))
         let newTodoBtn = document.querySelector('.add-todo')
-        newTodoBtn.addEventListener('click', () => addSection.style.display = 'block')
-        addBtn.addEventListener('click', this.#renderItem)
+        newTodoBtn.addEventListener('click', () => addItemSection.style.display = 'block')
+        addBtn.addEventListener('click', renderItem)
             
     }
 
@@ -146,10 +152,13 @@ class TodoProject extends ProjectsList {
         element.disabled = !element.disabled
     }
 
-    #renderItem(){
-        let inputValue = document.querySelector('.add-input').value
+    }
+
+    function renderItem(){
+        let inputItem = document.querySelector('.add-input')
+        let inputValue = inputItem.value
             if (!inputValue) inputValue = 'Default Title'
-            let index = addSection.dataset.activeItem
+            let index = addItemSection.dataset.activeItem
             let active
             
             // Get the index of the rendered project
@@ -160,12 +169,11 @@ class TodoProject extends ProjectsList {
             } 
         }
             active.append(new TodoItem(inputValue))
-            addSection.style.display = 'none'
+            inputItem.value = ''
+            addItemSection.style.display = 'none'
             active.renderContent()
         }
-    }
-
-
+    
 
 let allProjects = new AllProject()
 let gym = new TodoProject('for gyming', 'going to the workout regularly')
