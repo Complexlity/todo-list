@@ -653,6 +653,11 @@ video {
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 
+.bg-gray-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
+
 .p-5 {
   padding: 1.25rem;
 }
@@ -681,6 +686,16 @@ video {
   padding-bottom: 0.5rem;
 }
 
+.py-7 {
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+}
+
+.py-\[10rem\] {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -701,6 +716,10 @@ video {
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-\[30rem\] {
+  font-size: 30rem;
 }
 
 .font-bold {

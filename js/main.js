@@ -41,3 +41,33 @@ function populateTodoItems(number){
         todoItems.innerHTML += item
     }
 }
+
+class TodoItem{
+    constructor(title, checked=false){
+        this.title = title
+        this.checked = checked
+    }
+}
+
+class TodoProject {
+    constructor(title, description, items=[]){
+        this.title = title
+        this.description = description
+        this.items = items
+        this.index = 0
+    }
+    append(item){
+        item.index = this.index
+        this.items.push(item)
+        this.index++
+    }
+    
+    remove(item){
+        for(let projectItem of this.items){
+            if (projectItem.index == item.index){
+                this.items.splice(projectItem, 1)
+                return
+            }
+        }
+    }
+}
