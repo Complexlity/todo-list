@@ -6,6 +6,9 @@ const secondMenuContent = document.querySelector('.mobile-menu-content')
 const todoItems = document.querySelector('.todo-items')
 const content = document.querySelector('.content')
 const menuItems = document.querySelector('.menu-items')
+const addSection = document.querySelector('.add-book-section')
+const addBtn = document.querySelector('button.add')
+const cancelBtn = document.querySelector('button.cancel')
 
 hamburgerIcon.addEventListener('click', displaySecMenu)
 hamburgerCloseIcon.addEventListener('click', hideSecMenu)
@@ -93,9 +96,9 @@ class TodoProject extends ProjectsList {
     renderContent(){
         content.innerHTML = `
         <header class="w-4/5 mx-auto">
-                    <h2 class="text-center relative">${this.title} <span class="add-item absolute -right-0">Add</span></h2>
-                    <hr class=' mx-auto'>
-                </header>
+        <h2 class="text-center relative">${this.title} <span class="flex add-item absolute -right-0 top-0 gap-1"> <span>New</span> <img class='icon add-todo' src="assets/plus-circle.png" alt=""></span></h2>
+        <hr class=' mx-auto'>
+    </header>
                     <ul class="todo-items mx-auto mt-4 w-4/5 px-4 py-4 grid gap-2">      
                   </ul>
       `
@@ -113,25 +116,31 @@ class TodoProject extends ProjectsList {
         }
         todoList.innerHTML += `
         <li class="todo w-full  bg-gray-500 rounded-lg px-4 py-2">
-        <div class="todo-text-container">
-        <input type='checkbox' class="check-todo-btn rounded-full" ${isChecked}></input>
-        <input class="todo-input w-4/5"type="text" class="todo-text" value="${item.title}" readonly ${disabled}>
-        <div class="btn-container">
-        <i class="delete-todo-btn far fa-trash"></i>
-        <i class="edit-todo-btn fas fa-edit"></i>
-        </div></div>
-        </li>    `
+                            <div class="todo-text-container flex gap-2">
+                            <input type='checkbox' class="check-todo-btn rounded-full" ${isChecked}></input>
+                            <input class="todo-input w-4/5"type="text" class="todo-text" value="${item.title}" readonly ${disabled}>
+                            <div class="btn-container flex gap-2">
+                                <img class="icon"  src="assets/pencil.png" alt="">
+                                <img class="icon" src="assets/delete.png" alt="">
+                            </div></div>
+                            </li>   `
       }
     }
 
     addListeners(){
         let checkboxes = document.querySelectorAll('.check-todo-btn')
         checkboxes.forEach(checkbox => checkbox.addEventListener('click', this.#toggleDisable))
+        let newTodoBtn = document.querySelector('.add-todo')
+        newTodoBtn.addEventListener('click', this.#addTodo)
     }
     
     #toggleDisable(){
         let element = this.nextElementSibling
         element.disabled = !element.disabled
+    }
+
+    #addTodo(){
+        addSection.style.display = 'block'
     }
 
 }
@@ -144,6 +153,6 @@ gym.append(wakeUp)
 gym.renderContent()
 gym.addListeners()
 
-let allProjects = new AllProject()
-allProjects.append(gym)
-allProjects.renderContent()
+// let allProjects = new AllProject()
+// allProjects.append(gym)
+// allProjects.renderContent()

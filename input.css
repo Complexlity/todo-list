@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* 
 *{
   color:white;
-}
+} */
 
 .main-content {
     grid-template-columns: minmax(250px, 1fr) 3fr;
@@ -49,3 +49,18 @@
 input:disabled{
  text-decoration: line-through;
 }
+
+.icon:hover {
+  scale:1.1
+}
+
+.add-book-section{
+  position:fixed;
+  /* display:flex; */
+  align-items:center;
+  justify-content: center;
+  inset: 0;
+  background:rgba(83, 81, 78, 0.397);
+  backdrop-filter: blur(.1px);
+}
+
