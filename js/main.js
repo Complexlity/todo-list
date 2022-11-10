@@ -7,8 +7,8 @@ const todoItems = document.querySelector('.todo-items')
 const content = document.querySelector('.content')
 const menuItems = document.querySelector('.menu-items')
 const addSection = document.querySelector('.add-book-section')
-const addBtn = document.querySelector('button.add')
-const cancelBtn = document.querySelector('button.cancel')
+let activeProject;
+
 
 hamburgerIcon.addEventListener('click', displaySecMenu)
 hamburgerCloseIcon.addEventListener('click', hideSecMenu)
@@ -57,7 +57,7 @@ class ProjectsList {
 
 
 class TodoItem{
-    constructor(title, checked=true){
+    constructor(title, checked=false){
         this.title = title
         this.checked = checked
     }
@@ -125,34 +125,54 @@ class TodoProject extends ProjectsList {
                             </div></div>
                             </li>   `
       }
+      addSection.dataset.activeItem = this.index
+      this.addListeners()
     }
 
     addListeners(){
+        const addBtn = document.querySelector('button.add')
+        const cancelBtn = document.querySelector('button.cancel')
         let checkboxes = document.querySelectorAll('.check-todo-btn')
         checkboxes.forEach(checkbox => checkbox.addEventListener('click', this.#toggleDisable))
         let newTodoBtn = document.querySelector('.add-todo')
-        newTodoBtn.addEventListener('click', this.#addTodo)
+        newTodoBtn.addEventListener('click', () => addSection.style.display = 'block')
+        addBtn.addEventListener('click', this.#renderItem)
+            
     }
+
     
     #toggleDisable(){
         let element = this.nextElementSibling
         element.disabled = !element.disabled
     }
 
-    #addTodo(){
-        addSection.style.display = 'block'
+    #renderItem(){
+        let inputValue = document.querySelector('.add-input').value
+            if (!inputValue) inputValue = 'Default Title'
+            let index = addSection.dataset.activeItem
+            let active
+            
+            // Get the index of the rendered project
+            for(let project of allProjects.items){
+            if(project.index = index) {
+                active = project
+                break
+            } 
+        }
+            active.append(new TodoItem(inputValue))
+            addSection.style.display = 'none'
+            active.renderContent()
+        }
     }
 
-}
 
+
+let allProjects = new AllProject()
 let gym = new TodoProject('for gyming', 'going to the workout regularly')
+allProjects.append(gym)
 let sleep = new TodoItem('for sleeping')
 let wakeUp = new TodoItem('for waking up')
 gym.append(sleep)
 gym.append(wakeUp)
+allProjects.renderContent()
 gym.renderContent()
-gym.addListeners()
-
-// let allProjects = new AllProject()
-// allProjects.append(gym)
-// allProjects.renderContent()
