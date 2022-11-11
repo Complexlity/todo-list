@@ -128,10 +128,10 @@ class TodoProject extends ProjectsList {
         <li class="todo w-full  bg-gray-500 rounded-lg px-4 py-2">
                             <div class="todo-text-container flex gap-2">
                             <input type='checkbox' class="check-todo-btn rounded-full" ${isChecked}></input>
-                            <input class="todo-input w-4/5"type="text" class="todo-text" value="${item.title}" readonly ${disabled} data-index=${item.index}>
+                            <input class="todo-input w-4/5 focus:outline-none outline-none border-none" type="text"value="${item.title}" readonly ${disabled} data-index=${item.index}>
                             <div class="btn-container flex gap-2">
                                 <img class="icon edit"  src="assets/pencil.png" alt="">
-                                <img class="icon" src="assets/delete.png" alt="">
+                                <img class="icon delete" src="assets/delete.png" alt="">
                             </div></div>
                             </li>   `
       }
@@ -142,17 +142,18 @@ class TodoProject extends ProjectsList {
 
     addListeners(){
         const editBtns = document.querySelectorAll('.icon.edit')
+        const deleteBtns = document.querySelectorAll('.icon.delete')
         const addBtn = document.querySelector('button.add')
         const cancelBtn = document.querySelector('button.cancel')
         const checkboxes = document.querySelectorAll('.check-todo-btn')
         const newTodoBtn = document.querySelector('.add-todo')
         const cancelEditBtn = document.querySelector('.cancel-edit')
         const confirmEditBtn = document.querySelector('.confirm-edit')
-        console.log(confirmEditBtn)
         checkboxes.forEach(checkbox => checkbox.addEventListener('click', this.#toggleDisable))
         newTodoBtn.addEventListener('click', () => addItemSection.style.display = 'block')
         addBtn.addEventListener('click', renderItem)
         editBtns.forEach(editBtn => editBtn.addEventListener('click', editItem))
+        deleteBtns.forEach(deleteBtn => deleteBtn.addEventListener('click', deleteItem))
         cancelEditBtn.addEventListener('click', closeEditing)
         confirmEditBtn.addEventListener('click', confirmEditing)
             
@@ -214,6 +215,20 @@ class TodoProject extends ProjectsList {
             
             closeEditing()
         }
+    }
+
+    function deleteItem(){
+        let deletedInput = this.parentElement.previousElementSibling
+        let index = deletedInput.dataset.index
+        let deletedItem = deletedInput.parentElement
+        let itemsList = activeProject.items
+        for (let item of itemsList){
+            if (item.index == index){
+                alert('Are you sure you want to delete this item (No going back after this stage')
+                itemsList.splice(itemsList.indexOf(item), 1)
+            }
+        }
+        activeProject.renderContent()
     }
 
 
