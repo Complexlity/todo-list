@@ -9,6 +9,8 @@ const menuItems = document.querySelector('.menu-items')
 const addItemSection = document.querySelector('.add-book-section')
 const addProjectSection = document.querySelector('.add-project-section')
 const editItemSection = document.querySelector('.edit-item-section')
+const editInput = document.querySelector('.edit-input')
+let edittedItem;
 let activeProject;
 
 console.log(editItemSection)
@@ -126,7 +128,7 @@ class TodoProject extends ProjectsList {
         <li class="todo w-full  bg-gray-500 rounded-lg px-4 py-2">
                             <div class="todo-text-container flex gap-2">
                             <input type='checkbox' class="check-todo-btn rounded-full" ${isChecked}></input>
-                            <input class="todo-input w-4/5"type="text" class="todo-text" value="${item.title}" readonly ${disabled}>
+                            <input class="todo-input w-4/5"type="text" class="todo-text" value="${item.title}" readonly ${disabled} data-index=${item.index}>
                             <div class="btn-container flex gap-2">
                                 <img class="icon edit"  src="assets/pencil.png" alt="">
                                 <img class="icon" src="assets/delete.png" alt="">
@@ -135,6 +137,7 @@ class TodoProject extends ProjectsList {
       }
       addItemSection.dataset.activeItem = this.index
       this.addListeners()
+      activeProject = this
     }
 
     addListeners(){
@@ -151,6 +154,7 @@ class TodoProject extends ProjectsList {
         addBtn.addEventListener('click', renderItem)
         editBtns.forEach(editBtn => editBtn.addEventListener('click', editItem))
         cancelEditBtn.addEventListener('click', closeEditing)
+        confirmEditBtn.addEventListener('click', confirmEditing)
             
     }
 
@@ -162,20 +166,25 @@ class TodoProject extends ProjectsList {
 
     }
 
+    function findItem(index, iter=allProjects){
+        let active
+        for(let project of iter.items){
+        if(project.index = index) {
+            active = project
+            break
+        } 
+    }
+    return active
+}
+
     function renderItem(){
         let inputItem = document.querySelector('.add-input')
         let inputValue = inputItem.value
             if (!inputValue) inputValue = 'Default Title'
             let index = addItemSection.dataset.activeItem
-            let active
             
             // Get the index of the rendered project
-            for(let project of allProjects.items){
-            if(project.index = index) {
-                active = project
-                break
-            } 
-        }
+            active = findItem(index)
             active.append(new TodoItem(inputValue))
             inputItem.value = ''
             addItemSection.style.display = 'none'
@@ -184,15 +193,27 @@ class TodoProject extends ProjectsList {
     
     function editItem(){
         editItemSection.style.display = 'block'
-        let editInput = document.querySelector('.edit-input')
-        editInput.value = this.parentElement.previousElementSibling.value
+        edittedItem = this.parentElement.previousElementSibling
+        editInput.value = edittedItem.value
         editInput.select()
 
     }
 
     function closeEditing(){
         editItemSection.style.display = 'none'
-        
+    }
+
+    function confirmEditing(){
+        if((edittedItem.value == editInput.value || !edittedItem)){
+            closeEditing()
+        }
+        else {
+            let index = edittedItem.dataset.index
+            const edittedObject = findItem(index, activeProject)
+            edittedObject.title = edittedItem.value = editInput.value
+            
+            closeEditing()
+        }
     }
 
 
