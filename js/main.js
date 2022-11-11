@@ -1,7 +1,8 @@
 /* TODOS
 1. Add Items to local storage
 2. Implement delete project functionality
-3. Refactor application UI
+3. Add priority list, Date and Notes functionality to Todo Item (object)
+4. Refactor application UI
 */
 
 
