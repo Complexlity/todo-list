@@ -6,14 +6,17 @@ const secondMenuContent = document.querySelector('.mobile-menu-content')
 const todoItems = document.querySelector('.todo-items')
 const content = document.querySelector('.content')
 const menuItems = document.querySelector('.menu-items')
-const addItemSection = document.querySelector('.add-book-section')
+const addItemSection = document.querySelector('.add-item-section')
 const addProjectSection = document.querySelector('.add-project-section')
 const editItemSection = document.querySelector('.edit-item-section')
 const editInput = document.querySelector('.edit-input')
+const projectTitleInput = document.querySelector('.add-project-title')
+const projectDescriptionInput = document.querySelector('.add-project-description')
+const projectCards = document.querySelectorAll('.project-card')
+
 let edittedItem;
 let activeProject;
 
-console.log(editItemSection)
 hamburgerIcon.addEventListener('click', displaySecMenu)
 hamburgerCloseIcon.addEventListener('click', hideSecMenu)
 
@@ -28,11 +31,12 @@ function hideSecMenu(){
 
     secondMenu.style.transform = 'translateX(100%)'
     setTimeout(() => hamburgerIcon.style.display = 'block', 600)
+    populateMenu(primaryMenu, secondMenuContent)
     
 }
 
-function populateMenu(){
-    secondMenuContent.innerHTML = primaryMenu.innerHTML
+function populateMenu(menu1=secondMenuContent, menu2=primaryMenu){
+    menu1.innerHTML = menu2.innerHTML
     allProjects.addListeners()
 }
 
@@ -76,19 +80,29 @@ class AllProject extends ProjectsList{
     }
 
     renderContent(){
+        menuItems.innerHTML = ''
         for(let item of this.items){
             menuItems.innerHTML += `
-            <div class="project | text-start bg-gray-700 mt-8 px-8 rounded-md md:rounded-none">
-                    <h3 class="title">${item.title}</h3>
-                    <p class="description text-sm italic">${item.description}</p>
-                </div>
-            `
-            this.addListeners()
+            <div class="project-card | text-start bg-gray-500 mt-8 px-8 rounded-md md:rounded-none hover:bg-gray-600" data-index=${item.index}>
+                  <h3 class="title">${item.title}</h3>
+                  <p class="description text-sm italic">${item.description}</p>
+              </div>
+            `            
         }
+        this.addListeners()
     }
         addListeners(){
-            const addProjectBtn = document.querySelectorAll('.icon.add-project')
-            addProjectBtn.forEach(button => button.addEventListener('click', () => addProjectSection.style.display = 'block'))            
+            const newProjectBtn = document.querySelectorAll
+            ('.icon.add-project')
+            const cancelProjectBtn = document.querySelector('.cancel-project')
+            const addProjectBtn = document.querySelector('.update-project')
+            
+            const projectCards = document.querySelectorAll('.project-card')
+            projectCards.forEach(projectCard => projectCard.addEventListener('click', activateProject))
+            newProjectBtn.forEach(button => button.addEventListener('click', showProject))
+            cancelProjectBtn.addEventListener('click', closeAddSection)
+            addProjectBtn.addEventListener('click', updateProject)
+            
         }
     }
 
@@ -167,6 +181,44 @@ class TodoProject extends ProjectsList {
 
     }
 
+
+    function activateProject(){
+        const projectCards = document.querySelectorAll('.project-card')
+        projectCards.forEach(projectCard => projectCard.classList.remove('active'))
+        this.classList.add('active')
+        let index = this.dataset.index
+        let projectItem = findItem(index)
+        activeProject = projectItem
+        hideSecMenu()
+        // debugger
+        projectItem.renderContent()
+    }
+
+    function closeAddSection(){
+        addProjectSection.style.display = 'none'
+    }
+
+    function showProject(){
+        addProjectSection.style.display = 'block'
+        projectTitleInput.value = projectDescriptionInput.value = ''
+    }
+
+    function updateProject(){
+        let newTitle = projectTitleInput.value
+        let newDescription = projectDescriptionInput.value
+        if(!(newTitle && newDescription)) {
+            alert('Title and Description values must be filled')
+        }
+        else{
+            let newProject = new TodoProject(newTitle, newDescription)
+                allProjects.append(newProject)
+                    allProjects.renderContent()
+                    populateMenu()
+                    closeAddSection()
+            }
+        
+    }
+
     function findItem(index, iter=allProjects){
         let active
         for(let project of iter.items){
@@ -196,7 +248,9 @@ class TodoProject extends ProjectsList {
         editItemSection.style.display = 'block'
         edittedItem = this.parentElement.previousElementSibling
         editInput.value = edittedItem.value
-        editInput.select()
+        const end = editInput.value.length
+        editInput.setSelectionRange(end, end)
+        editInput.focus()
 
     }
 
@@ -205,16 +259,13 @@ class TodoProject extends ProjectsList {
     }
 
     function confirmEditing(){
-        if((edittedItem.value == editInput.value || !edittedItem)){
-            closeEditing()
-        }
-        else {
+      
+        if(!(edittedItem.value == editInput.value || !edittedItem)){
             let index = edittedItem.dataset.index
             const edittedObject = findItem(index, activeProject)
             edittedObject.title = edittedItem.value = editInput.value
-            
-            closeEditing()
         }
+        closeEditing()
     }
 
     function deleteItem(){

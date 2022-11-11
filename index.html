@@ -15,7 +15,7 @@
             <div class="w-8 h-8 md:hidden "><img src="assets/icon-hamburger.svg"  class="hamburger inline-block w-full h-full" alt="hamburger-icon"></div>
         </nav>
         <div class="main-content | h-full md:grid">
-            <div class=" primary-menu menus | relative hidden text-center bg-gray-500 md:block">
+            <div class=" primary-menu menus | relative hidden text-center bg-gray-400 md:block">
                 <h2 class="text-center">Projects</h2>
                 <hr class='w-3/4 mx-auto'>
                 <div class="menu-items"></div>
@@ -41,11 +41,13 @@
                   </ul>
             </div>
             <div class="mobile-menu menus fixed right-0 top-0 h-full w-3/5 p-6 bg-gray-300 md:hidden">
-                <img src="assets/icon-hamburger-close.svg"  class="hamburger-close w-8 h-8" alt="hamburger-close-icon">
-                <div class="mobile-menu-content"></div>
-            </div>
+                
+                  <img src="assets/icon-hamburger-close.svg"  class="hamburger-close w-8 h-8" alt="hamburger-close-icon">
+                  <div class="mobile-menu-content"></div>
+
+                </div>
         </div>
-        <section class="hidden add-book-section">
+        <section class="hidden add-item-section">
           <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
               <div class="fixed inset-0 bg-opacity-75 transition-opacity"></div>
             
@@ -89,18 +91,18 @@
                   <div class="mt-2 grid gap-4">
                     <div class="flex items-center gap-1 w-full">
                       <label for="price" class="block text-sm font-medium text-gray-700">TITLE:</label>
-                      <input type="text" class="add-input | bg-gray-200 px-2 w-full py-3 rounded-lg sm:w-[25rem]">
+                      <input type="text" class="add-project-title | bg-gray-200 px-2 w-full py-3 rounded-lg sm:w-[25rem]">
                     </div>
                     <div class="flex items-center gap-1 w-full">
                       <label for="price" class="block text-sm font-medium text-gray-700">DESC:</label>
-                      <input type="text" class="add-input | bg-gray-200 px-2 py-1 w-full rounded-lg sm:w-[25rem]">
+                      <input type="text" class="add-project-description | bg-gray-200 px-2 py-1 w-full rounded-lg sm:w-[25rem]">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-              <button type="button" class="add-project | inline-flex w-full justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Add</button>
+              <button type="button" class="update-project | inline-flex w-full justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Add</button>
               <button type="button" class=" cancel-project | mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
             </div>
           </div>
@@ -138,6 +140,9 @@
     </div>
 </section>
 <div class="hidden text-start bg-gray-700 mt-8 px-8 rounded-md md:rounded-none">
+
+</div>
+<div class="hidden | bg-gray-500 mt-8 px-8 rounded-md md:rounded-none hover:bg-gray-600" data-index=${item.index}>
 </div>
     </div>
 </body>

@@ -54,7 +54,7 @@ input:disabled{
   scale:1.1
 }
 
-.add-book-section{
+.add-item-section{
   position:fixed;
   /* display:flex; */
   align-items:center;
@@ -62,5 +62,9 @@ input:disabled{
   inset: 0;
   background:rgba(83, 81, 78, 0.397);
   backdrop-filter: blur(.1px);
+}
+
+.project-card.active, .project-card.active:hover {
+  background-color:blue;
 }
 
