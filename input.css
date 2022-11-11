@@ -65,6 +65,6 @@ input:disabled{
 }
 
 .project-card.active, .project-card.active:hover {
-  background-color:blue;
+  background-color:rgb(4, 4, 64);
 }
 

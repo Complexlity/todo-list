@@ -127,6 +127,10 @@ class TodoProject extends ProjectsList {
                   </ul>
       `
       let todoList = document.querySelector('.todo-items')
+      if(this.items.length == 0){
+        todoList.innerHTML = `<p class="text-center text-3xl w-full">No Item Yet. Click <span class='italic' > New </span> Button to add item to list</p>`
+      }
+      else{  
       for(let item of this.items){
         let isChecked
         let disabled
@@ -149,6 +153,7 @@ class TodoProject extends ProjectsList {
                             </div></div>
                             </li>   `
       }
+    }
       addItemSection.dataset.activeItem = this.index
       this.addListeners()
       activeProject = this
