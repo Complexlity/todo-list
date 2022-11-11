@@ -8,8 +8,10 @@ const content = document.querySelector('.content')
 const menuItems = document.querySelector('.menu-items')
 const addItemSection = document.querySelector('.add-book-section')
 const addProjectSection = document.querySelector('.add-project-section')
+const editItemSection = document.querySelector('.edit-item-section')
 let activeProject;
 
+console.log(editItemSection)
 hamburgerIcon.addEventListener('click', displaySecMenu)
 hamburgerCloseIcon.addEventListener('click', hideSecMenu)
 
@@ -126,7 +128,7 @@ class TodoProject extends ProjectsList {
                             <input type='checkbox' class="check-todo-btn rounded-full" ${isChecked}></input>
                             <input class="todo-input w-4/5"type="text" class="todo-text" value="${item.title}" readonly ${disabled}>
                             <div class="btn-container flex gap-2">
-                                <img class="icon"  src="assets/pencil.png" alt="">
+                                <img class="icon edit"  src="assets/pencil.png" alt="">
                                 <img class="icon" src="assets/delete.png" alt="">
                             </div></div>
                             </li>   `
@@ -136,13 +138,19 @@ class TodoProject extends ProjectsList {
     }
 
     addListeners(){
+        const editBtns = document.querySelectorAll('.icon.edit')
         const addBtn = document.querySelector('button.add')
         const cancelBtn = document.querySelector('button.cancel')
-        let checkboxes = document.querySelectorAll('.check-todo-btn')
+        const checkboxes = document.querySelectorAll('.check-todo-btn')
+        const newTodoBtn = document.querySelector('.add-todo')
+        const cancelEditBtn = document.querySelector('.cancel-edit')
+        const confirmEditBtn = document.querySelector('.confirm-edit')
+        console.log(confirmEditBtn)
         checkboxes.forEach(checkbox => checkbox.addEventListener('click', this.#toggleDisable))
-        let newTodoBtn = document.querySelector('.add-todo')
         newTodoBtn.addEventListener('click', () => addItemSection.style.display = 'block')
         addBtn.addEventListener('click', renderItem)
+        editBtns.forEach(editBtn => editBtn.addEventListener('click', editItem))
+        cancelEditBtn.addEventListener('click', closeEditing)
             
     }
 
@@ -174,6 +182,19 @@ class TodoProject extends ProjectsList {
             active.renderContent()
         }
     
+    function editItem(){
+        editItemSection.style.display = 'block'
+        let editInput = document.querySelector('.edit-input')
+        editInput.value = this.parentElement.previousElementSibling.value
+        editInput.select()
+
+    }
+
+    function closeEditing(){
+        editItemSection.style.display = 'none'
+        
+    }
+
 
 let allProjects = new AllProject()
 let gym = new TodoProject('for gyming', 'going to the workout regularly')
