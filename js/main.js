@@ -1,3 +1,10 @@
+/* TODOS
+1. Add Items to local storage
+2. Implement delete project functionality
+3. Refactor application UI
+*/
+
+
 const hamburgerIcon = document.querySelector('.hamburger')
 const hamburgerCloseIcon = document.querySelector('.hamburger-close')
 const secondMenu = document.querySelector('.mobile-menu')
@@ -42,6 +49,13 @@ function populateMenu(menu1=secondMenuContent, menu2=primaryMenu){
 
 
 
+class TodoItem{
+    constructor(title, checked=false){
+        this.title = title
+        this.checked = checked
+    }
+}
+
 class ProjectsList {
     constructor(items = [], count=0){
         this.items = items
@@ -53,7 +67,7 @@ class ProjectsList {
         this.items.push(item)
         this.count++
     }
-
+    
     remove(item){
         for(let projectItem of this.items){
             if (projectItem.index == item.index){
@@ -66,27 +80,21 @@ class ProjectsList {
 
 
 
-class TodoItem{
-    constructor(title, checked=false){
-        this.title = title
-        this.checked = checked
-    }
-}
 
 
 class AllProject extends ProjectsList{
     constructor(items,count){
         super()
     }
-
+    
     renderContent(){
         menuItems.innerHTML = ''
         for(let item of this.items){
             menuItems.innerHTML += `
             <div class="project-card | text-start bg-gray-500 mt-8 px-8 rounded-md md:rounded-none hover:bg-gray-600" data-index=${item.index}>
-                  <h3 class="title">${item.title}</h3>
-                  <p class="description text-sm italic">${item.description}</p>
-              </div>
+            <h3 class="title">${item.title}</h3>
+            <p class="description text-sm italic">${item.description}</p>
+            </div>
             `            
         }
         this.addListeners()
