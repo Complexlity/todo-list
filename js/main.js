@@ -180,12 +180,17 @@ class TodoProject extends ProjectsList {
     }
 }
     
+
 function addActive(){
     let projectCards = document.querySelectorAll('.project-card')
     projectCards.forEach(projectCard => projectCard.classList.remove('active'))
     this.classList.add('active')
-    console.log(projectCards)
+    let index = this.dataset.index
+    let project = findItem(index)
+    console.log(project)
+    project.renderContent()
 }
+
 
 
     function closeAddSection(){
@@ -216,7 +221,7 @@ function addActive(){
     function findItem(index, iter=allProjects){
         let active
         for(let project of iter.items){
-        if(project.index = index) {
+        if(project.index == index) {
             active = project
             break
         } 
