@@ -36,8 +36,8 @@
   color:black;
 }
 
-.mobile-menu .project * {
-  color:white;
+.mobile-menu .project-card.active * {
+  color:hsl(0, 0%, 85%);
 }
 
 .mobile-menu hr {

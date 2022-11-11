@@ -120,9 +120,11 @@ class TodoProject extends ProjectsList {
     renderContent(){
         content.innerHTML = `
         <header class="w-4/5 mx-auto">
-        <h2 class="text-center relative">${this.title} <span class="flex add-item absolute -right-0 top-0 gap-1"> <span>New</span> <img class='icon add-todo' src="assets/plus-circle.png" alt=""></span></h2>
-        <hr class=' mx-auto'>
-    </header>
+                    <div class="flex items-center">
+                      <h2 class="text-2xl mg:text-4xl flex-1 text-center ">${this.title}</h2><div><span class="flex add-item gap-1"> <span class="text-2xl mg:text-3xl">New</span> <img class='icon h-[2rem]' src="assets/plus-circle.png" alt=""></span></div>
+                    </div>
+                    <hr class=' mx-auto'>
+                </header>
                     <ul class="todo-items mx-auto mt-4 w-4/5 px-4 py-4 grid gap-2">      
                   </ul>
       `
