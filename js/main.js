@@ -98,7 +98,7 @@ class AllProject extends ProjectsList{
             const addProjectBtn = document.querySelector('.update-project')
             
             const projectCards = document.querySelectorAll('.project-card')
-            projectCards.forEach(projectCard => projectCard.addEventListener('click', activateProject))
+            projectCards.forEach(projectCard => projectCard.addEventListener('click', addActive))
             newProjectBtn.forEach(button => button.addEventListener('click', showProject))
             cancelProjectBtn.addEventListener('click', closeAddSection)
             addProjectBtn.addEventListener('click', updateProject)
@@ -178,21 +178,15 @@ class TodoProject extends ProjectsList {
         let element = this.nextElementSibling
         element.disabled = !element.disabled
     }
+}
+    
+function addActive(){
+    let projectCards = document.querySelectorAll('.project-card')
+    projectCards.forEach(projectCard => projectCard.classList.remove('active'))
+    this.classList.add('active')
+    console.log(projectCards)
+}
 
-    }
-
-
-    function activateProject(){
-        const projectCards = document.querySelectorAll('.project-card')
-        projectCards.forEach(projectCard => projectCard.classList.remove('active'))
-        this.classList.add('active')
-        let index = this.dataset.index
-        let projectItem = findItem(index)
-        activeProject = projectItem
-        hideSecMenu()
-        // debugger
-        projectItem.renderContent()
-    }
 
     function closeAddSection(){
         addProjectSection.style.display = 'none'
