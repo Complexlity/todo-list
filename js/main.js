@@ -278,10 +278,10 @@ function addActive(){
 
 
 let allProjects = new AllProject()
-let gym = new TodoProject('for gyming', 'going to the workout regularly')
+let gym = new TodoProject('Web Developement', 'daily coding improvements')
 allProjects.append(gym)
-let sleep = new TodoItem('for sleeping')
-let wakeUp = new TodoItem('for waking up')
+let sleep = new TodoItem('read programming articles')
+let wakeUp = new TodoItem('write more code')
 gym.append(sleep)
 gym.append(wakeUp)
 allProjects.renderContent()
