@@ -182,6 +182,7 @@ class TodoProject extends ProjectsList {
         checkboxes.forEach(checkbox => checkbox.addEventListener('click', this.#toggleDisable))
         newTodoBtn.addEventListener('click', () => addItemSection.style.display = 'block')
         addBtn.addEventListener('click', renderItem)
+        cancelBtn.addEventListener('click', closeAddItemSection)
         editBtns.forEach(editBtn => editBtn.addEventListener('click', editItem))
         deleteBtns.forEach(deleteBtn => deleteBtn.addEventListener('click', deleteItem))
         cancelEditBtn.addEventListener('click', closeEditing)
@@ -255,11 +256,15 @@ function addActive(){
             // Get the index of the rendered project
             active = findItem(index)
             active.append(new TodoItem(inputValue))
+            closeAddItemSection()
             inputItem.value = ''
-            addItemSection.style.display = 'none'
             active.renderContent()
         }
-    
+
+    function closeAddItemSection(){
+        addItemSection.style.display = 'none'
+    }      
+
     function editItem(){
         editItemSection.style.display = 'block'
         edittedItem = this.parentElement.previousElementSibling
