@@ -130,7 +130,7 @@ class TodoProject extends ProjectsList {
         content.innerHTML = `
         <header class="w-4/5 mx-auto">
                     <div class="flex items-center">
-                      <h2 class="text-2xl mg:text-4xl flex-1 text-center ">${this.title}</h2><div><span class="flex add-item gap-1"> <span class="text-2xl mg:text-3xl">New</span> <img class='icon h-[2rem]' src="assets/plus-circle.png" alt=""></span></div>
+                      <h2 class="text-2xl mg:text-4xl flex-1 text-center ">${this.title}</h2><div><span class="flex add-item gap-1"> <span class="text-2xl mg:text-3xl">New</span> <img class=' add-todo icon h-[2rem] ' src="assets/plus-circle.png" alt=""></span></div>
                     </div>
                     <hr class=' mx-auto'>
                 </header>
@@ -205,6 +205,7 @@ function addActive(){
     let project = findItem(index)
     console.log(project)
     project.renderContent()
+    
 }
 
 
