@@ -92,7 +92,7 @@ class AllProject extends ProjectsList{
         menuItems.innerHTML = ''
         for(let item of this.items){
             menuItems.innerHTML += `
-            <div class="project-card | text-start bg-gray-500 mt-6 px-8 py-4 rounded-md md:rounded-none hover:bg-gray-600" data-index=${item.index}>
+            <div class="project-card | text-start bg-gray-500 mt-6 px-8  py-4 rounded-md md:rounded-none hover:bg-gray-600" data-index=${item.index}>
             <h3 class="title">${item.title}</h3>
             <p class="description text-sm italic">${item.description}</p>
             </div>
